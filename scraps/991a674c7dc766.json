@@ -1,0 +1,29 @@
+{
+  "title": "新しいDjangoプロジェクトを作ったらやること",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-18",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "```shell\npython3 manage.py startapp blogpost\n touch blogpost/urls.py\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "次にプロジェクトのurlsをいじる\n```python\nfrom django.contrib import admin\nfrom django.urls import path\n\nurlpatterns = [\n    path('admin/', admin.site.urls)\n]\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "つぎにプロジェクトのsettings.pyをいじる\n```diff python\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n+   'blogpost.apps.BlogpostConfig',\n]\n```",
+      "body_updated_at": "2022-07-18"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "アプリのurlsに最低限のコードを書く\n```python\nfrom django.contrib import admin\nfrom django.urls import path\n\nurlpatterns = [\n    path('admin/', admin.site.urls)\n]\n```"
+    }
+  ]
+}

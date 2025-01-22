@@ -1,0 +1,13 @@
+{
+  "title": "ubuntu sudo権限付与",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-07",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```\ngpasswd -a user_name sudo\n```"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "UbuntuでPython Djangoを動かす",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-08",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-08",
+      "body_markdown": "flaskがなぜか挙動がおかしかったのでDjangoを試してみる"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": ":::message\n勉強中\n\n:::"
+    }
+  ]
+}

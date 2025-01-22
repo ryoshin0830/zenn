@@ -1,0 +1,43 @@
+{
+  "title": "Djangoのモデル",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-18",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "https://zenn.dev/ryoushin/scraps/991a674c7dc766\nの続き"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "プロジェクトのsetting.pyではデフォルトでsqlite3になっている\n"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "アプリのmodels.pyを編集\n```python\nfrom django.db import models\n\n# Create your models here.\nclass SampleModel(models.Model):\n    title = models.CharField(max_length=100)\n    number = models.IntegerField()\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "```shell\npython3 manage.py makemigrations\n```\nでmigrationsフォルダとその中身を生成（バグを反映させないためにこの手順があるみたい）\n ```shell\npython3 manage.py migrate\n```\nでデータベースを生成"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "確認する。\n```shell\npython3 manage.py createsuperuser\n```\nでユーザーを作成"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "アプリのadmin.pyにコードを追加しないと管理画面で表示されない見たい\n```python\nfrom django.contrib import admin\nfrom .models import SampleModel\n\n# Register your models here.\n\nadmin.site.register(SampleModel)\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "疑問：なぜコードでは「SampleModel」なのに管理画面では「Sample models」になっているのか"
+    }
+  ]
+}

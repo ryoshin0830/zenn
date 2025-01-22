@@ -1,0 +1,90 @@
+{
+  "title": "Google Cloud Vision APIをUbuntuで動かす",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-07",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "参考：https://dev.classmethod.jp/articles/google-cloud_vision-api/"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "Google側の設定などは省く"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "Ubuntu側の操作\n\n```\npip install --upgrade google-cloud-vision\n```\n"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```\nexport GOOGLE_APPLICATION_CREDENTIALS=\"jsonキーのフルパス\"\n```\nパスを通す。\n",
+      "children": [
+        {
+          "author": "ryoushin",
+          "created_at": "2022-07-07",
+          "body_markdown": "永続化は 「linux パス永続化」スクラップを参照"
+        }
+      ]
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```\npython -m pip install --upgrade pip\n```\npipは新しいのに"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```\npip install google-cloud-vision\n```\nモジュールをインストール"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```python\nfrom google.cloud import vision\nfrom google.oauth2 import service_account\n\nIMG_URL = \"写真ファイルのURL\"\n\n# 身元証明書のjson読み込み\ncredentials = service_account.Credentials.from_service_account_file('key/cloud-vision-api-355607-15efdc8124ab.json')\n\nclient = vision.ImageAnnotatorClient(credentials=credentials)\nimage = vision.Image()\nimage.source.image_uri = IMG_URL\n\nresponse = client.label_detection(image=image)\nlabels = response.label_annotations\n\nfor label in labels:\n    print(label.description + \":\" + str(label.score))\n\nif response.error.message:\n    raise Exception(\n        '{}\\nFor more info on error messages, check: '\n        'https://cloud.google.com/apis/design/errors'.format(\n            response.error.message))\n```\n\nこのコードで写真のラベル付ができる（テスト済み）",
+      "body_updated_at": "2022-07-07"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "パスが通っていればこれでもいけるはず\n公式ドキュメントのコード\n```python\nimport io\nimport os\n\n# Imports the Google Cloud client library\nfrom google.cloud import vision\n\n# Instantiates a client\nclient = vision.ImageAnnotatorClient()\n\n# The name of the image file to annotate\nfile_name = os.path.abspath('resources/wakeupcat.jpg')\n\n# Loads the image into memory\nwith io.open(file_name, 'rb') as image_file:\n    content = image_file.read()\n\nimage = vision.Image(content=content)\n\n# Performs label detection on the image file\nresponse = client.label_detection(image=image)\nlabels = response.label_annotations\n\nprint('Labels:')\nfor label in labels:\n    print(label.description)\n```",
+      "body_updated_at": "2022-07-07",
+      "children": [
+        {
+          "author": "ryoushin",
+          "created_at": "2022-07-07",
+          "body_markdown": "[公式ドキュメント](https://cloud.google.com/vision/docs/detect-labels-image-client-libraries?hl=ja)"
+        }
+      ]
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "クラス作成の時こうすればパスを通さなくてもいいみたい\n```python\n# ライブラリーの読み込み\nfrom google.oauth2 import service_account\n\n# 認証用jsonファイルのパス\ncredentials = service_account.Credentials.from_service_account_file('key/cloud-vision-api-355607-15efdc8124ab.json')\n\n# clientというクラスを作る際にcredentialsを入れる\nclient = vision.ImageAnnotatorClient(credentials=credentials)\n\n```",
+      "body_updated_at": "2022-07-07"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "https://cloud.google.com/vision/docs/pdf?hl=ja"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "PDFを試してみる\nhttps://cloud.google.com/vision/docs/pdf?hl=ja\n公式のデモコード"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "まずは\n```shell\npip install google-cloud-storage\npip install --upgrade google-cloud-vision\n```\nGoogle Cloud Strageにアクセスできるようにする"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```python\ndef async_detect_document(gcs_source_uri, gcs_destination_uri):\n    \"\"\"OCR with PDF/TIFF as source files on GCS\"\"\"\n    import json\n    import re\n    from google.cloud import vision\n    from google.cloud import storage\n\n    # Supported mime_types are: 'application/pdf' and 'image/tiff'\n    mime_type = 'application/pdf'\n\n    # How many pages should be grouped into each json output file.\n    batch_size = 2\n\n    client = vision.ImageAnnotatorClient()\n\n    feature = vision.Feature(\n        type_=vision.Feature.Type.DOCUMENT_TEXT_DETECTION)\n\n    gcs_source = vision.GcsSource(uri=gcs_source_uri)\n    input_config = vision.InputConfig(\n        gcs_source=gcs_source, mime_type=mime_type)\n\n    gcs_destination = vision.GcsDestination(uri=gcs_destination_uri)\n    output_config = vision.OutputConfig(\n        gcs_destination=gcs_destination, batch_size=batch_size)\n\n    async_request = vision.AsyncAnnotateFileRequest(\n        features=[feature], input_config=input_config,\n        output_config=output_config)\n\n    operation = client.async_batch_annotate_files(\n        requests=[async_request])\n\n    print('Waiting for the operation to finish.')\n    operation.result(timeout=420)\n\n    # Once the request has completed and the output has been\n    # written to GCS, we can list all the output files.\n    storage_client = storage.Client()\n\n    match = re.match(r'gs://([^/]+)/(.+)', gcs_destination_uri)\n    bucket_name = match.group(1)\n    prefix = match.group(2)\n\n    bucket = storage_client.get_bucket(bucket_name)\n\n    # List objects with the given prefix, filtering out folders.\n    blob_list = [blob for blob in list(bucket.list_blobs(\n        prefix=prefix)) if not blob.name.endswith('/')]\n    print('Output files:')\n    for blob in blob_list:\n        print(blob.name)\n\n    # Process the first output file from GCS.\n    # Since we specified batch_size=2, the first response contains\n    # the first two pages of the input file.\n    output = blob_list[0]\n\n    json_string = output.download_as_string()\n    response = json.loads(json_string)\n\n    # The actual response for the first page of the input file.\n    first_page_response = response['responses'][0]\n    annotation = first_page_response['fullTextAnnotation']\n\n    # Here we print the full text from the first page.\n    # The response contains more information:\n    # annotation/pages/blocks/paragraphs/words/symbols\n    # including confidence scores and bounding boxes\n    print('Full text:\\n')\n    print(annotation['text'])\n\nsource_uri = 'gs://cloudvisionapibacket/test.pdf'\ndestination_uri = 'gs://cloudvisionapibacket/'\n\nasync_detect_document(source_uri, destination_uri)\n```\n\nこれで一発で上手くいった\nエラーは出たけどバケットにjsonファイルが出力された"
+    }
+  ]
+}

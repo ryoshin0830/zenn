@@ -1,0 +1,49 @@
+{
+  "title": "Djangoのアプリケーションを作成",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-18",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "Djangoは\nブラウザ\nプロジェクト\nアプリ　アプリ　アプリ　アプリ\nの構造で構成されている。"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "プロジェクトがurls.pyでどのアプリを使うのか決めることができるみたい"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "```python\npython3 manage.py startapp helloworldapp\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "プロジェクトのsettings.pyで識別させる必要がある。\n```diff python\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n+    'helloworldapp.apps.HelloworldappConfig' \n]\n```",
+      "body_updated_at": "2022-07-18"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "プロジェクトのurls.pyをいじる\n```python\nfrom django.contrib import admin\nfrom django.urls import path,include #ここ\n# from .views import helloworldfunc, HelloWorldClass\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n   # path('helloworldurl/', helloworldfunc),　#ここを消す\n   # path('helloworldurl2', HelloWorldClass.as_view()) #ここを消す\n    path('', include('helloworldapp.urls')) #ここを追加する。注意：まだurlsというファイルは存在しない\n]\n\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "次にアプリのurlsをいじる\n```python\nfrom django.urls import path\nfrom .views import helloworldfunc\n\nurlpatterns = [\n    path('helloworldapp/', helloworldfunc),\n]\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "アプリにviews.pyを作成する\n```python\nfrom django.shortcuts import render\nfrom django.http import HttpResponse\n\n\ndef helloworldfunc(request):\n    return HttpResponse(\"helloya\")\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-18",
+      "body_markdown": "これで成功！"
+    }
+  ]
+}

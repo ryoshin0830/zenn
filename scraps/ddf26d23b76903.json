@@ -1,0 +1,13 @@
+{
+  "title": "pycharm sftpでサーバーと同期",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-07",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "Command + ,で設定\n![](https://storage.googleapis.com/zenn-user-upload/17e13c85d2e5-20220707.png)\n![](https://storage.googleapis.com/zenn-user-upload/cff68d1d600f-20220707.png)\nこの二つをちゃんと書く\n![](https://storage.googleapis.com/zenn-user-upload/173f1d6766ae-20220707.png)\nここで同期ができる。"
+    }
+  ]
+}

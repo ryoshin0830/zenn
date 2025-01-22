@@ -1,0 +1,13 @@
+{
+  "title": "MacOS homebrewインストール",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-08",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-08",
+      "body_markdown": "Homebrewはマジ便利。\n```shell\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n```\nインストール終わった後使えない時はパス通すの忘れてる\n```shell\necho 'eval \"$(/opt/homebrew/bin/brew shellenv)\"' >> /Users/ryoshin/.zprofile\n    eval \"$(/opt/homebrew/bin/brew shellenv)\"\n```"
+    }
+  ]
+}

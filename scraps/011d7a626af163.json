@@ -1,0 +1,13 @@
+{
+  "title": "機械学習を使い日本語文章校正を行う",
+  "closed": false,
+  "archived": true,
+  "created_at": "2022-01-05",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-01-05",
+      "body_markdown": "# 目標としてはGrammaryと似たような機能を目指したい。"
+    }
+  ]
+}

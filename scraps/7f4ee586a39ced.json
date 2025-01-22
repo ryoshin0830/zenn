@@ -1,0 +1,62 @@
+{
+  "title": "PDFのファイルをフラットデータにする",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-22",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "目的：複雑なPDFファイルを一列のファイルにする"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "Arcobat DC ProでまずExcelにエクスポートする"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "ExcelをGoogle Driveでスプレットシートにする（スプレットシートの方がデータ処理が早い）"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "```excel\n=TEXTJOIN(\"::\",true,A1:AK1)\n```\n複数の列を「::」（文中に出てないものならなんでもいい）で繋げる",
+      "body_updated_at": "2022-07-22"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "```\n=SUBSTITUTE(AL1,CHAR(10),\"::\")\n```\nセル内改行を「::」（文中に出てないものならなんでもいい）で繋げる"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "```\n=if(iserror(SPLIT(AM1,\"::\")),\"\",SPLIT(AM1,\"::\"))\n```\n「::」で列を分ける",
+      "body_updated_at": "2022-07-22",
+      "children": [
+        {
+          "author": "ryoushin",
+          "created_at": "2022-07-23",
+          "body_markdown": "```\n::／… □\n```\nなどの特殊文字も分けた方がいいかも"
+        }
+      ]
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "出てきたセルを複製，別のシートで「値」として貼り付け"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "```\n=FILTER(FLATTEN(範囲),NOT(ISBLANK(FLATTEN(範囲))))\n```\n空白以外のデータを一列にまとめる"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-22",
+      "body_markdown": "長いので\n表示形式，ラッピング，切り詰める\nでセル内に表示させる"
+    }
+  ]
+}

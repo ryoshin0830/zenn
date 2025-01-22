@@ -1,0 +1,29 @@
+{
+  "title": "Linux MacOS フォルダをフラット化",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-08-05",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-08-05",
+      "body_markdown": "サブフォルダのファイルを全てこの層にまとめる\n```shell\nfind . -mindepth 2 -type f -exec mv -i '{}' . ';'\n```\n空フォルダを削除\n```shell\nfind . -type d -empty -delete\n```"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-08-06",
+      "body_markdown": "いちいいち同名のものがあると上書きするかどうか聞いてこないようにする，経過を確認する。\n```shell\nfind . -mindepth 2 -type f -exec mv -i -f -v '{}' . ';'\n```",
+      "body_updated_at": "2022-08-06"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-08-06",
+      "body_markdown": "Linux Ubuntu で使えることを確認済み"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-08-06",
+      "body_markdown": "-v で経過を表示できる"
+    }
+  ]
+}

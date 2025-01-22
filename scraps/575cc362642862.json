@@ -1,0 +1,62 @@
+{
+  "title": "Djangoに触れてみる",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-16",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-16",
+      "body_markdown": "Python 3.8.9\n![](https://storage.googleapis.com/zenn-user-upload/6eada35ec579-20220716.png)\nPycharm環境でDjangoに触れてみる"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-16",
+      "body_markdown": "wsgiがウェブサーバーとDjangoを繋いでいるらしい"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-16",
+      "body_markdown": "wsgiがrequestをrequest(object)にresponse(object)をresponseに変換することができる（すごい）"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-16",
+      "body_markdown": "urls.pyがディレクトリを管理していて，pathを追加することでページを追加することができる。\n```python\nfrom django.contrib import admin\nfrom django.urls import path\nfrom .views import helloworldfunc\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('helloworldurl/', helloworldfunc) #新しくこの行を追加でhelloworldurlというディレクトリーを追加\n]\n```",
+      "body_updated_at": "2022-07-16"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-16",
+      "body_markdown": "なぜかデフォルトでないけどviews.pyを作成して\n```python\nfrom django.http import HttpResponse # レスポンスオブジェクトをreturnできるようにする\n\n\ndef helloworldfunc(request): # requestを忘れたらwsgiのオブジェクトを読み込めない\n    return HttpResponse('hello world')\n\n```\nでページを作成することができる。",
+      "body_updated_at": "2022-07-16"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-16",
+      "body_markdown": "上記のがfunction-based viewでもう一つの方法がある"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-16",
+      "body_markdown": "class-based viewは実装が楽だが修正が困難"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-17",
+      "body_markdown": "Pythonの継承について\n```python\nfrom django.views.generic import TemplateView\n\nclass HelloWorldClass(TemplateView):\n    template_name = 'hello.html' #テンプレートを指定することができる\n```\nこれで継承できる",
+      "body_updated_at": "2022-07-17"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-17",
+      "body_markdown": "classbasedでコードを書いてみる\n```python:urls.py\nfrom django.contrib import admin\nfrom django.urls import path\nfrom .views import helloworldfunc, HelloWorldClass #ここ\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('helloworldurl/', helloworldfunc),\n    path('helloworldurl2', HelloWorldClass.as_view()) #ここ\n]\n```\n```python:views.py\nfrom django.http import HttpResponse\nfrom django.views.generic import TemplateView'#ここ\n\ndef helloworldfunc(request):\n    return HttpResponse('hello world')\n\nclass HelloWorldClass(TemplateView):'#ここ\n    template_name = 'hello.html'#ここ\n\n```",
+      "body_updated_at": "2022-07-17"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-17",
+      "body_markdown": "![](https://storage.googleapis.com/zenn-user-upload/4c68dca4052b-20220717.png)\nあとはhtmlを入れるだけ！"
+    }
+  ]
+}

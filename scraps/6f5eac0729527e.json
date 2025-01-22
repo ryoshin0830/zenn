@@ -1,0 +1,23 @@
+{
+  "title": "linux screenコマンド使い方",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-07",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "screenを使えば複数のプログラムを容易に実行できる"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```\napt-get install screen\n```\nでインストール可能\n"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "セクションを一旦離れる時は\n```\n<ctrl> + <a> \nd\n```\n\nscreen -ls\nアタッチする\n\n- screen -r \n複数のセッションがある場合は、 screen -ls で調べたIDを指定してセッションに戻る。\nセッションに名前を付ける\n\n- screen -S スクリーン名　--"
+    }
+  ]
+}

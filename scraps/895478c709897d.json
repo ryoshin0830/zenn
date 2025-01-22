@@ -1,0 +1,34 @@
+{
+  "title": "python flaskフレームワークをubuntuでやってみる",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-07",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "https://aiacademy.jp/media/?p=57"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```shell\npip install flask\n```\n```\n>>> import flask\n>>> flask.__version__\n'0.12'\n```\nちゃんとインストールできたかチェック\n",
+      "body_updated_at": "2022-07-08"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-08",
+      "body_markdown": "Flask一応インストールとアクティブはできたけどリスポンスしない\n80ポートはroot権限が必要→解決\n"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-08",
+      "body_markdown": "なぜかtcpingでも通るのにリスポンスがない"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-08",
+      "body_markdown": "80でも5000でも"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "ubuntu tab補完ができない",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-07",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```\nchsh -s /bin/bash ユーザー名\n```\nshをbashに変更\n\n[参考](https://qiita.com/_dakc_/items/5a6a07c4dca0c1e14aac)",
+      "body_updated_at": "2022-07-11"
+    }
+  ]
+}

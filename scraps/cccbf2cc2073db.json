@@ -1,0 +1,30 @@
+{
+  "title": "linux ubuntu 環境変数export 永続化するには",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-07",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "https://rainbow-engine.com/linux-envvar-permanent/"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```\n~/.bash_profile\n```\nこのファイルいじればいいみたい。"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "Ubuntuは\n$vi ~/.profile \nこのファイルかも\n",
+      "children": [
+        {
+          "author": "ryoushin",
+          "created_at": "2022-07-07",
+          "body_markdown": "UbuntuはこれでOK"
+        }
+      ]
+    }
+  ]
+}

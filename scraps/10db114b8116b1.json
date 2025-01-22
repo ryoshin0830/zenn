@@ -1,0 +1,23 @@
+{
+  "title": "ubuntu sshセッションが切れないようにする",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-07-07",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "/etc/ssh/sshd_config\nファイルをいじる\n\n![](https://storage.googleapis.com/zenn-user-upload/1424ef95b418-20220707.png)\nこの二つを追加"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "デフォルトでは注釈になってるから＃を消すだけでOK"
+    },
+    {
+      "author": "ryoushin",
+      "created_at": "2022-07-07",
+      "body_markdown": "```\nsystemctl restart sshd\n```\nでsshを再起動も忘れずに"
+    }
+  ]
+}

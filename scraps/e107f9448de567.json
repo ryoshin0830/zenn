@@ -1,0 +1,13 @@
+{
+  "title": "pikpakをマウントする",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-08-13",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-08-13",
+      "body_markdown": "pip install pikpak-fuse\nmkdir -p /mnt/pikpakDrive /var/run/pikpak-fuse\npikpak-fuse --pikpak-user XXXXXXXXX --pikpak-password XXXXXXX -w /var/run/pikpak-fuse /mnt/pikpakDrive"
+    }
+  ]
+}

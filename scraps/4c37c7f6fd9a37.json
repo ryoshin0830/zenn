@@ -1,0 +1,13 @@
+{
+  "title": "Linux Ubuntu 今のディレクトリにある全てのファイル数（サブディレクトリも含む）を調べる方法",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-08-06",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-08-06",
+      "body_markdown": "```shell\nfind -type f | wc -l\n```"
+    }
+  ]
+}

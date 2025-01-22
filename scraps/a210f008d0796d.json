@@ -1,0 +1,14 @@
+{
+  "title": "UbuntuにMySQLを入れてみた",
+  "closed": false,
+  "archived": false,
+  "created_at": "2022-08-08",
+  "comments": [
+    {
+      "author": "ryoushin",
+      "created_at": "2022-08-08",
+      "body_markdown": "なぜかエラーばかりでかなり苦戦したのでメモしておく\n\n```shell\nsudo apt update\n```\n```shell\nsudo apt install mysql-server\n```\nここでパスワードを設定しておかないと後にエラーが出る（原因は不明）\n```shell\nmysql -uroot\n```\n```sql\nALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by '{password}';\n```\n```shell\nsudo mysql_secure_installation\n```\n```shell\nsudo mysql\n```\nユーザーを作る\n```sql\nCREATE USER ユーザー名@'%' IDENTIFIED BY 'パスワード';\n```\n権限を与える\n```sql\nshow grants for ユーザー名@'%';\n```\n```sql\ngrant all on *.* to ユーザー名@'%';\n```\n:::message\nデフォルトではローカルだけだから，リモートアクセスをオンにする\n:::\n```shell\nvim /etc/mysql/mysql.conf.d/mysqld.cnf\n```\nこの二行を変える\n```\nbind-address = 0.0.0.0\nmysqlx-bind-address = 0.0.0.0\n```\n```shell\nsudo systemctl restart mysql\n```\n```shell\nsudo ss -talpn\n```\nufwが起動していたらallowしておく\n```shell\nsudo ufw status\n```shell\nsudo ufw allow 3306\n```",
+      "body_updated_at": "2022-08-08"
+    }
+  ]
+}
